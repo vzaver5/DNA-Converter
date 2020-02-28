@@ -21,7 +21,6 @@ public class dnaconvert{
 		char[] noStartTransArr;
 		String clean;				//User input but easier to manipulate.
 		String correctedInput;		//User input but modified to start at correct spot
-		
 
 		//Hacker stuff
 		System.out.println("Welcome to Varun's DNA Conversion Center!");
@@ -296,7 +295,6 @@ public class dnaconvert{
 	//Input: DNA string that the user inputted
 	//Output: DNA strand that starts at AUG
 	//Purpose: Adjust input string such that new string begins with starting codon.
-
 	public static String findStart(String input){
 		//Convert string input into char array
 		char[] charArr = input.toCharArray();	//Inputted string as a char array
@@ -305,8 +303,8 @@ public class dnaconvert{
 
 		for(int i = 0; i < dnaLength; i++){
 			if(charArr[i] == 'T'){	//Check for TAC which will be translated to AUG
-				if(charArr[i+1] == 'A'){
-					if(charArr[i+2] == 'C'){
+				if( ( (i+1) < dnaLength ) && (charArr[i+1] == 'A')){
+					if( ( (i+2) < dnaLength ) && (charArr[i+2] == 'C')) {
 						//AUG codon has been found.
 						//Now we want to shrink the array by getting rid off all characters before the A in the AUG codon
 						//Create a new array that is the size of charArr to be charArr.length - i
@@ -324,6 +322,7 @@ public class dnaconvert{
 				}
 			}
 		}
+		//System.out.println("findstart string" + trueDNAStrand);
 		return trueDNAStrand;
 	}
 	
