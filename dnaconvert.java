@@ -23,8 +23,10 @@ public class dnaconvert{
 		String correctedInput;		//User input but modified to start at correct spot
 
 		//Hacker stuff
-		System.out.println("Welcome to Varun's DNA Conversion Center!");
-		System.out.print("Insert the strand of DNA: ");
+		System.out.println("--------------------------------------------------------------------------------");
+		System.out.println("\t\t\tWelcome to Varun's DNA Conversion Center!");
+		System.out.println("--------------------------------------------------------------------------------");
+		System.out.print("Insert the strand of DNA: \t\t");
 		
 		input = keyboard.nextLine();			//Accept input from user
 		input = input.toUpperCase();			//Make input all caps
@@ -37,7 +39,7 @@ public class dnaconvert{
 				//End is when youre done with the for loop
 			}else{
 				//User inputted bad genome. Inform them
-				System.out.println("The string you've inputted is not legal. Goodbye");
+				System.out.println("The string you've inputted is not legal. Goodbye.");
 				return;		//End the program
 			}
 		}
@@ -46,22 +48,23 @@ public class dnaconvert{
 		correctedInput = findStart(input);			//Give input and fix it so it starts with the Start Codon (DNA STILL)
 		
 		if(correctedInput.equals("")){
-			System.out.println("Input DNA string contains no start codon");
+			System.out.println("Input DNA string does not contain start codon (TAC)");
 			noStartTransArr = input.toCharArray();
 			String noStartTrans = transcription(noStartTransArr);
-			System.out.println("Transcribing anyways : " + noStartTrans);
+			System.out.println("Transcribing anyways:");
+			System.out.println("\tComplimentary mRNA Strand\t" + noStartTrans);
 		}else{
 
 			inpCharArr = correctedInput.toCharArray();		//Make input a char array to iterate through
-			System.out.println("Input string editted to start at start codon: " + correctedInput);
+			System.out.println("Input editted to start at start codon: \t" + correctedInput);
 
 			String mRNAStrand = transcription(inpCharArr);							//Get mRNA strand
-			System.out.println("The complimentary mRNA strand is: " + mRNAStrand);	//Print complimentary mRNA strand
+			System.out.println("Complimentary mRNA strand: \t\t" + mRNAStrand);	//Print complimentary mRNA strand
 		
 			String tRNAStrand = translation(mRNAStrand);
-			System.out.println("The complimentary tRNA strand is: " + tRNAStrand);	//Print complimentary tRNA strand
+			System.out.println("Complimentary tRNA strand: \t\t" + tRNAStrand);	//Print complimentary tRNA strand
 		
-			System.out.println("There exists a start codon in the string\nLook for AUG to match Methionine");
+			//System.out.println("There exists a start codon in the string\nLook for AUG to match Methionine");
 
 			String amino = aminoAcid(mRNAStrand);
 			char [] aminoArr = amino.toCharArray();
@@ -166,7 +169,7 @@ public class dnaconvert{
 			nucleo[1] = iterArr[k+1];
 			nucleo[2] = iterArr[k+2];
 			String codon = String.valueOf(nucleo);		//Convert the 3 chars into a string(Codon)
-			System.out.println(codon);
+			//System.out.println(codon);
 
 			if(codon.equals("AUG")){
 				start=true;
